@@ -4,6 +4,7 @@ module com.dhasboard.chat {
 
     requires org.controlsfx.controls;
     requires org.kordamp.bootstrapfx.core;
+    requires java.sql;
 
     opens com.dhasboard.chat to javafx.fxml;
     exports com.dhasboard.chat;
