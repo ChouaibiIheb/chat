@@ -1,0 +1,70 @@
+/* Style de base du drawer */
+.drawer {
+    -fx-background-color: #0F72B3;
+    -fx-border-color: white;
+    -fx-background-radius: 0px 30px 30px 0px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 2);
+    -fx-pref-width: 150px;
+    -fx-transition: all 0.1s ease-in-out;
+}
+
+/* État réduit */
+.drawer.collapsed {
+    -fx-pref-width: 50px;
+    -fx-background-radius: 0px 15px 15px 0px;
+}
+
+
+.drawer Label {
+    -fx-text-fill: white;
+    -fx-font-family: 'Segoe UI';
+    -fx-font-weight: bold;
+
+    /* Animation d'opacité intégrée */
+    -fx-transition: opacity 0.1s ease-in-out;
+}
+
+
+.drawer.collapsed Label {
+    -fx-opacity: 0;
+    -fx-pref-width: 0;
+}
+.recentlytask {
+    -fx-background-color: linear-gradient(to top right, #1593E6, #ffffff);;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px 15px 15px 15px;
+
+    -fx-border-color: #0F72B3;
+
+
+}
+.recentmsg{
+    -fx-background-color: #ffffff;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px 15px 15px 15px;
+    -fx-border-style: solid;
+    -fx-border-color: #0F72B3;
+}
+.patient{
+    -fx-background-color:#1593E6 ;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px 15px 15px 15px;
+    -fx-border-style: solid;
+    -fx-border-color: #0F72B3;
+
+}
+.task1{
+    -fx-background-color:#ffffff ;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px 15px 15px 15px;
+    -fx-border-style: solid;
+    -fx-border-color: #0F72B3;
+}
+.nbrtask{
+    -fx-background-color:#ffffff ;
+    -fx-border-radius: 1px;
+    -fx-background-radius: 1px 1px 1px 1px;
+    -fx-border-style: solid;
+    -fx-border-color: #0F72B3;
+}

@@ -4,17 +4,44 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db3a9ecc-b7fd-4c68-a553-6acccfda14fc" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/dhasboard/chat/Message.java" afterDir="false" />
+    <list default="true" id="db3a9ecc-b7fd-4c68-a553-6acccfda14fc" name="Changes" comment="mvc">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/dhasboard/chat/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/dhasboard/chat/UserDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/dhasboard/chat/UserMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/dhasboard/chat/Style/Insrciption.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/dhasboard/chat/Style/admin/styles.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/dhasboard/chat/Style/home.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/dhasboard/chat/Style/medicin/messages.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/dhasboard/chat/Style/medicin/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/dhasboard/chat/Style/pharmacie/accueil.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/dhasboard/chat/Style/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/dhasboard/chat/assets/appointments.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/dhasboard/chat/assets/back.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/dhasboard/chat/assets/dashboard.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/dhasboard/chat/assets/img.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/dhasboard/chat/assets/logout.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/dhasboard/chat/assets/message.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/dhasboard/chat/assets/messages.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/dhasboard/chat/assets/notifications.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/dhasboard/chat/assets/password.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/dhasboard/chat/assets/pharamalogo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/dhasboard/chat/assets/search.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/dhasboard/chat/assets/send.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/dhasboard/chat/assets/settings.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/dhasboard/chat/assets/task.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/dhasboard/chat/assets/test.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/dhasboard/chat/assets/username.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/dhasboard/chat/medicin/dashboard-view.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/dhasboard/chat/medicin/message-view.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/dhasboard/chat/medicin/sidebar-view.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/dhasboard/chat/message.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dhasboard/chat/ChatClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dhasboard/chat/ChatClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/dhasboard/chat/ChatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dhasboard/chat/ChatController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/dhasboard/chat/ChatServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dhasboard/chat/ChatServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dhasboard/chat/DBconnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dhasboard/chat/DBConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dhasboard/chat/DBConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dhasboard/chat/DBConnection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/dhasboard/chat/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dhasboard/chat/HelloApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dhasboard/chat/MessageDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dhasboard/chat/MessageDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dhasboard/chat/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dhasboard/chat/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dhasboard/chat/MessageDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dhasboard/chat/MessageDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/dhasboard/chat/chat.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/dhasboard/chat/chat.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -29,6 +56,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="FxmlFile" />
+        <option value="TypeScript File" />
+        <option value="CSS File" />
         <option value="Class" />
       </list>
     </option>
@@ -36,18 +65,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "ChouaibiIheb"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;ChouaibiIheb&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/ChouaibiIheb/chat.git",
-    "accountId": "cc8b0307-9cfe-40c8-9348-01a905ed171b"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/ChouaibiIheb/chat.git&quot;,
+    &quot;accountId&quot;: &quot;cc8b0307-9cfe-40c8-9348-01a905ed171b&quot;
   }
-}]]></component>
+}</component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -55,7 +84,11 @@
       </MavenGeneralSettings>
     </option>
   </component>
+  <component name="PhpDebugGeneral" listening_started="true" />
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\xampp\php\php.exe" />
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
 }</component>
@@ -78,14 +111,22 @@
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/iheb/IdeaProjects/chat/src/main/resources/com/dhasboard/chat&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\IntelliJ IDEA 2024.3.1.1\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\iheb\IdeaProjects\chat\src\main\resources\com\dhasboard\chat" />
+    </key>
+  </component>
   <component name="RunManager" selected="Application.HelloApplication">
     <configuration name="ChatClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.dhasboard.chat.ChatClient" />
@@ -157,12 +198,35 @@
       <workItem from="1739708799194" duration="3875000" />
       <workItem from="1739722798772" duration="765000" />
       <workItem from="1739723928780" duration="5623000" />
-      <workItem from="1739830203565" duration="1761000" />
+      <workItem from="1739830203565" duration="2529000" />
+      <workItem from="1739883388056" duration="953000" />
+      <workItem from="1739887388290" duration="3000" />
+      <workItem from="1739887466063" duration="33000" />
+      <workItem from="1739912362117" duration="14581000" />
+      <workItem from="1739960632889" duration="749000" />
+      <workItem from="1739967208019" duration="37000" />
+      <workItem from="1739977458474" duration="130000" />
+      <workItem from="1739977863921" duration="142000" />
+      <workItem from="1739991713052" duration="9721000" />
+      <workItem from="1740005898453" duration="1408000" />
     </task>
+    <task id="LOCAL-00001" summary="mvc">
+      <option name="closed" value="true" />
+      <created>1739833853750</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1739833853751</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="mvc" />
+    <option name="LAST_COMMIT_MESSAGE" value="mvc" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -178,7 +242,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/dhasboard/chat/ChatController.java</url>
-          <line>168</line>
+          <line>253</line>
           <properties class="com.dhasboard.chat.ChatController">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -186,13 +250,42 @@
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/com/dhasboard/chat/ChatServer.java</url>
-          <line>16</line>
-          <properties class="com.dhasboard.chat.ChatServer" method="main">
+          <url>file://$PROJECT_DIR$/src/main/java/com/dhasboard/chat/ChatController.java</url>
+          <line>81</line>
+          <properties class="com.dhasboard.chat.ChatController" method="loadPreviousMessages">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
-          <option name="timeStamp" value="3" />
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/com/dhasboard/chat/ChatController.java</url>
+          <line>137</line>
+          <properties class="com.dhasboard.chat.ChatController" method="sendMessage">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/dhasboard/chat/ChatController.java</url>
+          <line>102</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/dhasboard/chat/ChatController.java</url>
+          <line>82</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/dhasboard/chat/ChatController.java</url>
+          <line>83</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/dhasboard/chat/ChatController.java</url>
+          <line>124</line>
+          <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

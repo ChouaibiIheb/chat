@@ -6,6 +6,7 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +35,6 @@ public class ChatServer {
         private BufferedReader in;
         private PrintWriter out;
         private int userId;
-
         public ClientHandler(Socket socket) throws IOException {
             this.socket = socket;
             this.in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -58,7 +58,8 @@ public class ChatServer {
                     String content = parts[1];
 
                     // Sauvegarde en base
-                    Message message = new Message(userId, receiverId, content);
+                    LocalDateTime sentAt = LocalDateTime.now(); // إضافة الوقت الحالي
+                    Message message = new Message(userId, receiverId, content, sentAt);
                     messageDao.saveMessage(message);
 
                     // Envoi au destinataire

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<AnchorPane fx:id="messageRoot"
+            prefHeight="600.0"
+            prefWidth="686.0"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="pfa.java.pfa2025java.controllers.medicin.MessagesController">
+
+    <stylesheets>
+        <URL value="@../../Style/medicin/messages.css"/>
+    </stylesheets>
+
+    <children>
+        <VBox spacing="10"
+              AnchorPane.topAnchor="0"
+              AnchorPane.bottomAnchor="0"
+              AnchorPane.leftAnchor="0"
+              AnchorPane.rightAnchor="0">
+
+            <!-- En-tête -->
+            <HBox style="-fx-background-color: #0F72B3; -fx-padding: 10;"
+                  alignment="CENTER_LEFT">
+                <children>
+                    <ImageView fitHeight="30" fitWidth="30">
+                        <image>
+                            <Image url="@../../assets/messages.png"/>
+                        </image>
+                    </ImageView>
+                    <Label text="Messagerie Médicale"
+                           style="-fx-text-fill: white; -fx-font-size: 18; -fx-font-weight: bold;"/>
+                </children>
+            </HBox>
+
+            <!-- Corps principal -->
+            <HBox spacing="20" prefHeight="540.0">
+                <!-- Liste des contacts -->
+                <VBox spacing="10" prefWidth="200.0">
+                    <Label text="Contacts" style="-fx-font-weight: bold;"/>
+                    <ListView fx:id="userList"
+
+                              prefHeight="480.0"/>
+                </VBox>
+
+                <!-- Historique des messages -->
+                <VBox spacing="10" HBox.hgrow="ALWAYS">
+                    <Label text="Conversation" style="-fx-font-weight: bold;"/>
+                    <ScrollPane  fx:id="scrollPane" fitToWidth="true" vvalue="1.0">
+                        <AnchorPane>
+                            <VBox fx:id="chatBox" spacing="10" style="-fx-background-color: #f0f0f0;">
+                                <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+                            </VBox>
+                        </AnchorPane>
+                    </ScrollPane>
+
+                    <!-- Zone de saisie -->
+                    <HBox spacing="10" style="-fx-background-color: #f5f5f5; -fx-padding: 10;">
+                        <TextField fx:id="messageField"
+                                   HBox.hgrow="ALWAYS"
+                                   promptText="Écrivez votre message..."
+                                   style="-fx-background-radius: 20;"/>
+                        <Button fx:id="send"
+                                onAction="#sendMessage"
+                                mnemonicParsing="false"
+                                style="-fx-background-color: #0F72B3; -fx-text-fill: white; -fx-background-radius: 20;">
+                            <graphic>
+                                <ImageView fitHeight="20" fitWidth="20">
+                                    <image>
+                                        <Image url="@../../assets/send.png"/>
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                    </HBox>
+                </VBox>
+            </HBox>
+        </VBox>
+    </children>
+</AnchorPane>

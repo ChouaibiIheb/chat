@@ -10,13 +10,18 @@ public class DBConnection {
     private static final String PASSWORD = "";
     private static Connection instance;
 
+    private static boolean isFirstConnection = true;
+
     private DBConnection() {}
 
-    public static Connection getConnection() throws SQLException {
+    public static synchronized Connection getConnection() throws SQLException {
         if (instance == null || instance.isClosed()) {
             try {
                 instance = DriverManager.getConnection(URL, USER, PASSWORD);
-                System.out.println("Database connection established");
+                if (isFirstConnection) {
+                    System.out.println("Database connection established");
+                    isFirstConnection = false;
+                }
             } catch (SQLException e) {
                 System.err.println("Database connection failed: " + e.getMessage());
                 throw e;
@@ -34,5 +39,11 @@ public class DBConnection {
         } catch (SQLException e) {
             System.err.println("Error closing connection: " + e.getMessage());
         }
+    }
+
+    static {
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            DBConnection.closeConnection();
+        }));
     }
 }

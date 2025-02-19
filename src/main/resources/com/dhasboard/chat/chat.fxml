@@ -1,21 +1,78 @@
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.control.ScrollPane?>
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<VBox alignment="TOP_LEFT" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dhasboard.chat.ChatController" spacing="10">
-    <ScrollPane  fx:id="scrollPane" fitToWidth="true" vvalue="1.0">
-        <AnchorPane>
-            <VBox fx:id="chatBox" spacing="10" style="-fx-background-color: #f0f0f0;">
-            <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
-             </VBox>
-     </AnchorPane>
-    </ScrollPane>
-    <HBox spacing="10">
-        <TextField fx:id="messageField" prefWidth="300"/>
-        <Button text="إرسال" onAction="#sendMessage"/>
-    </HBox>
-</VBox>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="messageRoot" prefHeight="600.0" prefWidth="686.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dhasboard.chat.ChatController">
+
+    <stylesheets>
+        <URL value="@Style" />
+    </stylesheets>
+
+    <children>
+        <VBox spacing="10" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+
+            <!-- En-tête -->
+            <HBox alignment="CENTER_LEFT" style="-fx-background-color: #0F72B3; -fx-padding: 10;">
+                <children>
+                    <ImageView fitHeight="30" fitWidth="30">
+                        <image>
+                            <Image url="@assets/messages.png" />
+                        </image>
+                    </ImageView>
+                    <Label style="-fx-text-fill: white; -fx-font-size: 18; -fx-font-weight: bold;" text="Messagerie Médicale" />
+                </children>
+            </HBox>
+
+            <!-- Corps principal -->
+            <HBox prefHeight="540.0" spacing="20">
+                <!-- Liste des contacts -->
+                <VBox fx:id="contactBox" prefWidth="200.0" spacing="10">
+                    <Label style="-fx-font-weight: bold;" text="Contacts" />
+               <ScrollPane>
+                  <content>
+                          <ListView fx:id="userList" prefHeight="480.0">
+                    </ListView>
+                  </content>
+               </ScrollPane>
+                </VBox>
+
+                <!-- Historique des messages -->
+                <VBox spacing="10" HBox.hgrow="ALWAYS">
+                    <Label style="-fx-font-weight: bold;" text="Conversation" />
+                    <ScrollPane fx:id="scrollPane" fitToWidth="true" vvalue="1.0">
+                        <AnchorPane>
+                            <VBox fx:id="chatBox" layoutY="5.0" prefHeight="439.0" prefWidth="467.0" spacing="10" style="-fx-background-color: #f0f0f0;">
+                                <padding><Insets bottom="10" left="10" right="10" top="10" /></padding>
+                            </VBox>
+                        </AnchorPane>
+                    </ScrollPane>
+
+                    <!-- Zone de saisie -->
+                    <HBox spacing="10" style="-fx-background-color: #f5f5f5; -fx-padding: 10;">
+                        <TextField fx:id="messageField" promptText="Écrivez votre message..." style="-fx-background-radius: 20;" HBox.hgrow="ALWAYS" />
+                        <Button fx:id="send" mnemonicParsing="false" onAction="#sendMessage" style="-fx-background-color: #0F72B3; -fx-text-fill: white; -fx-background-radius: 20;">
+                            <graphic>
+                                <ImageView fitHeight="20" fitWidth="20">
+                                    <image>
+                                        <Image url="@assets/send.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                    </HBox>
+                </VBox>
+            </HBox>
+        </VBox>
+    </children>
+</AnchorPane>
