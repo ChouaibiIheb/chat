@@ -3,6 +3,9 @@ package com.dhasboard.chat;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -31,7 +34,8 @@ public class ChatController {
     @FXML private TextField messageField;
     @FXML private VBox chatBox;
     @FXML private ScrollPane scrollPane;
-
+    @FXML private TextField searchField;
+    @FXML private Label UserMessage;
     private Socket socket;
     private PrintWriter out;
     private BufferedReader in;
@@ -42,7 +46,8 @@ public class ChatController {
     @FXML
     private ListView<UserMessage> userList;
     private boolean userScrolledUp = false; // Track if user scrolled up
-
+    private ObservableList<UserMessage> originalUserList = FXCollections.observableArrayList();
+    private FilteredList<UserMessage> filteredUserList = new FilteredList<>(originalUserList);
     public void initialize() {
         try {
             setupNetworkConnection();
@@ -52,9 +57,9 @@ public class ChatController {
             loadUserList();
             userList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
                 if (newValue != null) {
-                    int selectedUserId = newValue.getUserId(); // استرجاع userId الخاص بالمستخدم المحدد
-                    System.out.println("Selected User ID: " + selectedUserId); // طباعة userId (لأغراض الاختبار)
-                    loadChatWithUser(selectedUserId); // تحميل الرسائل مع المستخدم المحدد
+                    int selectedUserId = newValue.getUserId();
+                    System.out.println("Selected User ID: " + selectedUserId);
+                    loadChatWithUser(selectedUserId);
                 }
             });
 
@@ -197,10 +202,8 @@ public class ChatController {
         try {
             List<UserMessage> userMessages = messageDao.getUsersWithLastMessage(userId);
 
-            // تعيين البيانات إلى ListView
             userList.getItems().setAll(userMessages);
 
-            // تعريف CellFactory لعرض UserMessage
             userList.setCellFactory(param -> new ListCell<UserMessage>() {
                 @Override
                 protected void updateItem(UserMessage userMessage, boolean empty) {
@@ -210,26 +213,20 @@ public class ChatController {
                         setText(null);
                         setGraphic(null);
                     } else {
-                        // إنشاء HBox لعرض البيانات
-                        HBox hbox = new HBox(10); // تباعد بين العناصر
+                        HBox hbox = new HBox(10);
                         hbox.setAlignment(Pos.CENTER_LEFT);
 
-                        // إضافة اسم المستخدم
                         Label usernameLabel = new Label(userMessage.getUsername());
                         usernameLabel.setStyle("-fx-font-weight: bold;");
 
-                        // إضافة آخر رسالة
                         Label lastMessageLabel = new Label(userMessage.getLastMessage());
                         lastMessageLabel.setStyle("-fx-text-fill: gray;");
 
-                        // إضافة وقت الإرسال
                         Label sentAtLabel = new Label(userMessage.getSentAt().toString());
                         sentAtLabel.setStyle("-fx-text-fill: gray; -fx-font-size: 10;");
 
-                        // إضافة العناصر إلى HBox
                         hbox.getChildren().addAll(usernameLabel, lastMessageLabel, sentAtLabel);
 
-                        // تعيين HBox كـ graphic للخلية
                         setGraphic(hbox);
                     }
                 }
@@ -245,7 +242,7 @@ public class ChatController {
             for (Message message : messages) {
                 addMessageToUI(message.getSenderId(), message.getContent());
             }
-            scrollToBottom(); // التمرير إلى الأسفل
+            scrollToBottom();
         } catch (SQLException e) {
             showError("Failed to load messages: " + e.getMessage());
         }

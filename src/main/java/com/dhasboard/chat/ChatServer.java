@@ -58,7 +58,7 @@ public class ChatServer {
                     String content = parts[1];
 
                     // Sauvegarde en base
-                    LocalDateTime sentAt = LocalDateTime.now(); // إضافة الوقت الحالي
+                    LocalDateTime sentAt = LocalDateTime.now();
                     Message message = new Message(userId, receiverId, content, sentAt);
                     messageDao.saveMessage(message);
 

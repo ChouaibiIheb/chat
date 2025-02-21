@@ -1,0 +1,4 @@
+#page{
+    -fx-background-image: url('../assets/img.png');
+    -fx-background-size: cover;
+}

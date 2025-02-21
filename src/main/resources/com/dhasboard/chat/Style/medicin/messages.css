@@ -1,0 +1,19 @@
+.message-bubble {
+    -fx-background-color: #e3f2fd;
+    -fx-background-radius: 15px;
+    -fx-padding: 10px;
+    -fx-margin: 5px;
+}
+
+.message-bubble:right {
+    -fx-background-color: #dcf8c6;
+    -fx-alignment: center-right;
+}
+
+.list-cell:even {
+    -fx-background-color: #f8f8f8;
+}
+
+.list-cell:odd {
+    -fx-background-color: white;
+}
