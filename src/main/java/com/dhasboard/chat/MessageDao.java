@@ -88,7 +88,7 @@ public class MessageDao {
     }
     public List<UserMessage> getUsersWithLastMessage(int userId) throws SQLException {
         List<UserMessage> userMessages = new ArrayList<>();
-        String sql = "SELECT u.id AS user_id, u.username, m.content, m.sent_at " +
+        String sql = "SELECT u.id AS user_id, u.username, m.content, m.sent_at, m.seen " +
                 "FROM users u " +
                 "JOIN messages m ON (u.id = m.sender_id OR u.id = m.receiver_id) " +
                 "WHERE (m.sender_id = ? OR m.receiver_id = ?) AND u.id != ? " +
@@ -121,7 +121,8 @@ public class MessageDao {
                             rs.getInt("user_id"),
                             rs.getString("username"),
                             rs.getString("content"),
-                            rs.getTimestamp("sent_at").toLocalDateTime()
+                            rs.getTimestamp("sent_at").toLocalDateTime(),
+                            rs.getBoolean("seen")
                     );
                     userMessages.add(userMessage);
                 }
@@ -129,5 +130,46 @@ public class MessageDao {
         }
         return userMessages;
     }
+    public List<UserMessage> searchUsers(int currentUserId, String query) throws SQLException {
+        List<UserMessage> userMessages = new ArrayList<>();
+        String sql = "SELECT u.id AS user_id, u.username, m.content, m.sent_at, m.seen " +
+                "FROM users u " +
+                "LEFT JOIN messages m ON (u.id = m.sender_id OR u.id = m.receiver_id) " +
+                "WHERE (u.username LIKE ?) AND u.id != ? " +
+                "GROUP BY u.id " +
+                "ORDER BY m.sent_at DESC";
 
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, "%" + query + "%");
+            stmt.setInt(2, currentUserId);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    UserMessage userMessage = new UserMessage(
+                            rs.getInt("user_id"),
+                            rs.getString("username"),
+                            rs.getString("content"),
+                            rs.getTimestamp("sent_at") != null ?
+                                    rs.getTimestamp("sent_at").toLocalDateTime() : LocalDateTime.now(),
+                            rs.getBoolean("seen")
+                    );
+                    userMessages.add(userMessage);
+                }
+            }
+        }
+        return userMessages;
+    }
+    public void markMessagesAsSeen(int receiverId, int senderId) throws SQLException {
+        String sql = "UPDATE messages SET seen = true, seen_at = NOW() " +
+                "WHERE sender_id = ? AND receiver_id = ? ";
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, senderId);
+            stmt.setInt(2, receiverId);
+            stmt.executeUpdate();
+        }
+    }
 }

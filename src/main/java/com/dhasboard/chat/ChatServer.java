@@ -81,6 +81,8 @@ public class ChatServer {
             for (ClientHandler client : clients) {
                 if (client.userId == receiverId) {
                     client.out.println(message.getSenderId() + ":" + message.getContent());
+                } else if (client.userId == message.getSenderId()) {
+                    client.out.println("SEEN_UPDATE:" + message.getId());
                 }
             }
         }

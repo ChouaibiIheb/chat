@@ -5,11 +5,11 @@ import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 
 import javafx.scene.layout.HBox;
@@ -30,51 +30,63 @@ import java.util.List;
 import java.util.Set;
 
 public class ChatController {
+
     private Set<String> displayedMessages = new HashSet<>();
     @FXML private TextField messageField;
     @FXML private VBox chatBox;
     @FXML private ScrollPane scrollPane;
     @FXML private TextField searchField;
-    @FXML private Label UserMessage;
     private Socket socket;
     private PrintWriter out;
     private BufferedReader in;
     private final int userId = 1;
-    private final  int receiverId = 2;
+    private   int receiverId ;
     private MessageDao messageDao = new MessageDao();
     private LocalDateTime sent_at = LocalDateTime.now();
+    @FXML private Label UserMessage;
     @FXML
     private ListView<UserMessage> userList;
     private boolean userScrolledUp = false; // Track if user scrolled up
-    private ObservableList<UserMessage> originalUserList = FXCollections.observableArrayList();
-    private FilteredList<UserMessage> filteredUserList = new FilteredList<>(originalUserList);
+
     public void initialize() {
         try {
+
             setupNetworkConnection();
             loadPreviousMessages();
             startMessageUpdater();
             startMessageListener();
             loadUserList();
-            userList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-                if (newValue != null) {
-                    int selectedUserId = newValue.getUserId();
-                    System.out.println("Selected User ID: " + selectedUserId);
-                    loadChatWithUser(selectedUserId);
-                }
-            });
+            setupSearchListener();
+            setupUserSelectionListener();
+            setupScrollListener();
+            startAutoRefresh();
 
-            // Add listener to track user scrolling
-            scrollPane.vvalueProperty().addListener((observable, oldValue, newValue) -> {
-                if (newValue.doubleValue() < 1.0) {
-                    userScrolledUp = true;
-                } else {
-                    userScrolledUp = false;
-                }
-            });
 
         } catch (IOException e) {
             showError("Connection error: " + e.getMessage());
         }
+    }
+    private void setupUserSelectionListener() {
+        userList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                receiverId = newValue.getUserId();
+                System.out.println("Selected User ID: " + receiverId);
+                loadChatWithUser(receiverId);
+                UserMessage.setText(newValue.getUsername());
+            }
+        });
+    }
+    private void setupScrollListener() {
+        scrollPane.vvalueProperty().addListener((observable, oldValue, newValue) -> {
+            userScrolledUp = (newValue.doubleValue() < 1.0);
+        });
+    }
+    private void startAutoRefresh() {
+        Timeline refreshTimeline = new Timeline(
+                new KeyFrame(Duration.seconds(2), e -> userList.refresh())
+        );
+        refreshTimeline.setCycleCount(Timeline.INDEFINITE);
+        refreshTimeline.play();
     }
 
     private void setupNetworkConnection() throws IOException {
@@ -116,6 +128,7 @@ public class ChatController {
                     String content = parts[1];
 
                     Platform.runLater(() -> {
+                        refreshUserList();
                         addMessageToUI(senderId, content);
                         scrollToBottom();
                     });
@@ -146,10 +159,11 @@ public class ChatController {
             Message message = new Message(userId, receiverId, content,sent_at);
             try {
                 messageDao.saveMessage(message);
-                out.println(receiverId + ":" + content); // Envoyer via le réseau
+                out.println(receiverId + ":" + content);
                 addMessageToUI(userId, content);
                 messageField.clear();
                 scrollToBottom();
+                refreshUserList();
             } catch (SQLException e) {
                 showError("Failed to send message: " + e.getMessage());
             }
@@ -220,12 +234,16 @@ public class ChatController {
                         usernameLabel.setStyle("-fx-font-weight: bold;");
 
                         Label lastMessageLabel = new Label(userMessage.getLastMessage());
-                        lastMessageLabel.setStyle("-fx-text-fill: gray;");
 
-                        Label sentAtLabel = new Label(userMessage.getSentAt().toString());
-                        sentAtLabel.setStyle("-fx-text-fill: gray; -fx-font-size: 10;");
 
-                        hbox.getChildren().addAll(usernameLabel, lastMessageLabel, sentAtLabel);
+
+                        lastMessageLabel.setStyle("-fx-font-weight: normal;");
+
+
+                        Label timeAgoLabel = new Label(userMessage.getTimeAgo());
+                        timeAgoLabel.setStyle("-fx-text-fill: gray; -fx-font-size: 10;");
+
+                        hbox.getChildren().addAll(usernameLabel, lastMessageLabel, timeAgoLabel);
 
                         setGraphic(hbox);
                     }
@@ -237,14 +255,47 @@ public class ChatController {
     }
     private void loadChatWithUser(int otherUserId) {
         try {
+
             chatBox.getChildren().clear();
             List<Message> messages = messageDao.getMessagesBetweenUsers(userId, otherUserId);
             for (Message message : messages) {
                 addMessageToUI(message.getSenderId(), message.getContent());
-            }
-            scrollToBottom();
+            }scrollToBottom();
         } catch (SQLException e) {
             showError("Failed to load messages: " + e.getMessage());
+        }
+    }
+
+
+    private void setupSearchListener() {
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            Timeline timeline = new Timeline(new KeyFrame(Duration.millis(300), e -> {
+                if (newValue.isEmpty()) {
+                    loadUserList();
+                } else {
+                    searchUsers(newValue);
+                }
+            }));
+            timeline.stop();
+            timeline.play();
+        });
+    }
+    private void searchUsers(String query) {
+        try {
+            List<UserMessage> searchResults = messageDao.searchUsers(userId, query);
+            userList.getItems().setAll(searchResults);
+        } catch (SQLException e) {
+            showError("Search error: " + e.getMessage());
+        }
+    }
+    private void refreshUserList() {
+        try {
+            List<UserMessage> updatedList = messageDao.getUsersWithLastMessage(userId);
+            Platform.runLater(() -> {
+                userList.getItems().setAll(updatedList);
+            });
+        } catch (SQLException e) {
+            showError("Error refreshing user list: " + e.getMessage());
         }
     }
 
