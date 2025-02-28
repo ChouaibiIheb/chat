@@ -4,13 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db3a9ecc-b7fd-4c68-a553-6acccfda14fc" name="Changes" comment="11">
+    <list default="true" id="db3a9ecc-b7fd-4c68-a553-6acccfda14fc" name="Changes" comment="111">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/dhasboard/chat/ChatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dhasboard/chat/ChatController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/dhasboard/chat/ChatServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dhasboard/chat/ChatServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dhasboard/chat/DBConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dhasboard/chat/DBConnection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/dhasboard/chat/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dhasboard/chat/Message.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/dhasboard/chat/MessageDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dhasboard/chat/MessageDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dhasboard/chat/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dhasboard/chat/UserDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/dhasboard/chat/UserMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dhasboard/chat/UserMessage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -189,7 +189,9 @@
       <workItem from="1740486947597" duration="5000" />
       <workItem from="1740488879941" duration="889000" />
       <workItem from="1740505344808" duration="192000" />
-      <workItem from="1740571416657" duration="690000" />
+      <workItem from="1740571416657" duration="3867000" />
+      <workItem from="1740578516410" duration="6768000" />
+      <workItem from="1740698506105" duration="1157000" />
     </task>
     <task id="LOCAL-00001" summary="mvc">
       <option name="closed" value="true" />
@@ -215,7 +217,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740178981987</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="111">
+      <option name="closed" value="true" />
+      <created>1740572151166</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1740572151166</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -225,14 +235,15 @@
     <MESSAGE value="mvc" />
     <MESSAGE value="-1" />
     <MESSAGE value="11" />
-    <option name="LAST_COMMIT_MESSAGE" value="11" />
+    <MESSAGE value="111" />
+    <option name="LAST_COMMIT_MESSAGE" value="111" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/dhasboard/chat/MessageDao.java</url>
-          <line>29</line>
+          <line>36</line>
           <properties class="com.dhasboard.chat.MessageDao" method="getMessagesBetweenUsers">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -241,7 +252,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/dhasboard/chat/ChatController.java</url>
-          <line>32</line>
+          <line>31</line>
           <properties class="com.dhasboard.chat.ChatController">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -250,7 +261,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/dhasboard/chat/MessageDao.java</url>
-          <line>163</line>
+          <line>164</line>
           <properties class="com.dhasboard.chat.MessageDao" method="markMessagesAsSeen">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -259,7 +270,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/dhasboard/chat/ChatController.java</url>
-          <line>50</line>
+          <line>49</line>
           <properties class="com.dhasboard.chat.ChatController" method="initialize">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -268,7 +279,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/dhasboard/chat/ChatController.java</url>
-          <line>32</line>
+          <line>31</line>
           <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -277,9 +288,19 @@
           <option name="timeStamp" value="29" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/dhasboard/chat/MessageDao.java</url>
-          <line>60</line>
-          <option name="timeStamp" value="40" />
+          <url>file://$PROJECT_DIR$/src/main/java/com/dhasboard/chat/ChatController.java</url>
+          <line>171</line>
+          <option name="timeStamp" value="43" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/dhasboard/chat/ChatController.java</url>
+          <line>227</line>
+          <option name="timeStamp" value="46" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/dhasboard/chat/ChatController.java</url>
+          <line>110</line>
+          <option name="timeStamp" value="47" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

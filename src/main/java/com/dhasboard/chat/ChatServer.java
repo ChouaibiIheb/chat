@@ -1,7 +1,5 @@
 package com.dhasboard.chat;
 
-import com.dhasboard.chat.MessageDao;
-import com.dhasboard.chat.Message;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -35,6 +33,7 @@ public class ChatServer {
         private BufferedReader in;
         private PrintWriter out;
         private int userId;
+
         public ClientHandler(Socket socket) throws IOException {
             this.socket = socket;
             this.in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -44,26 +43,31 @@ public class ChatServer {
         @Override
         public void run() {
             try {
-                // Authentification
                 userId = Integer.parseInt(in.readLine());
                 System.out.println("User " + userId + " connected");
 
-                // Gestion des messages
                 String inputLine;
                 while ((inputLine = in.readLine()) != null) {
-                    String[] parts = inputLine.split(":", 2);
-                    if (parts.length < 2) continue;
+                    if (inputLine.startsWith("SEEN:")) {
+                        int senderId = Integer.parseInt(inputLine.split(":")[1]);
+                        messageDao.markMessagesAsSeen(userId, senderId);
+                        for (ClientHandler client : clients) {
+                            if (client.userId == senderId) {
+                                client.out.println("SEEN_UPDATE:" + userId);
+                            }
+                        }
+                    } else if (inputLine.startsWith("MSG:")) {
+                        String[] parts = inputLine.split(":", 4);
+                        int receiverId = Integer.parseInt(parts[1]);
+                        String content = parts[2];
+                        int messageId = Integer.parseInt(parts[3]);
 
-                    int receiverId = Integer.parseInt(parts[0]);
-                    String content = parts[1];
-
-                    // Sauvegarde en base
-                    LocalDateTime sentAt = LocalDateTime.now();
-                    Message message = new Message(userId, receiverId, content, sentAt);
-                    messageDao.saveMessage(message);
-
-                    // Envoi au destinataire
-                    forwardMessage(receiverId, message);
+                        LocalDateTime sentAt = LocalDateTime.now();
+                        Message message = new Message(userId, receiverId, content, sentAt);
+                        message.setId(messageId);
+                        messageDao.saveMessage(message);
+                        forwardMessage(receiverId, message);
+                    }
                 }
             } catch (IOException | SQLException | NumberFormatException e) {
                 System.err.println("Client error: " + e.getMessage());
@@ -80,7 +84,7 @@ public class ChatServer {
         private void forwardMessage(int receiverId, Message message) {
             for (ClientHandler client : clients) {
                 if (client.userId == receiverId) {
-                    client.out.println(message.getSenderId() + ":" + message.getContent());
+                    client.out.println("MSG:" + message.getSenderId() + ":" + message.getContent() + ":" + message.getId());
                 } else if (client.userId == message.getSenderId()) {
                     client.out.println("SEEN_UPDATE:" + message.getId());
                 }

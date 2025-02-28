@@ -15,35 +15,15 @@ public class DBConnection {
     private DBConnection() {}
 
     public static synchronized Connection getConnection() throws SQLException {
-        if (instance == null || instance.isClosed()) {
-            try {
-                instance = DriverManager.getConnection(URL, USER, PASSWORD);
-                if (isFirstConnection) {
-                    System.out.println("Database connection established");
-                    isFirstConnection = false;
-                }
-            } catch (SQLException e) {
-                System.err.println("Database connection failed: " + e.getMessage());
-                throw e;
-            }
-        }
-        return instance;
-    }
-
-    public static void closeConnection() {
         try {
-            if (instance != null && !instance.isClosed()) {
-                instance.close();
-                System.out.println("Database connection closed");
-            }
+            Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+            System.out.println("Connexion à la base de données réussie !");
+            return connection;
         } catch (SQLException e) {
-            System.err.println("Error closing connection: " + e.getMessage());
+            System.out.println("Erreur de connexion à la base de données : " + e.getMessage());
+            throw e;
         }
-    }
 
-    static {
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            DBConnection.closeConnection();
-        }));
-    }
-}
+    }}
+
+

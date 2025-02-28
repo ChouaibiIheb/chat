@@ -11,61 +11,27 @@ public class Message {
     private boolean seen;
     private LocalDateTime seenAt;
 
-
-    // Constructor, Getters & Setters
     public Message(int senderId, int receiverId, String content, LocalDateTime sentAt) {
         this.senderId = senderId;
         this.receiverId = receiverId;
         this.content = content;
-        this.sentAt = LocalDateTime.now();
+        this.sentAt = sentAt;
+        this.seen = false;
     }
 
-
+    // Getters and Setters
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
+    public int getSenderId() { return senderId; }
+    public void setSenderId(int senderId) { this.senderId = senderId; }
+    public int getReceiverId() { return receiverId; }
+    public void setReceiverId(int receiverId) { this.receiverId = receiverId; }
+    public String getContent() { return content; }
+    public void setContent(String content) { this.content = content; }
+    public LocalDateTime getSentAt() { return sentAt; }
+    public void setSentAt(LocalDateTime sentAt) { this.sentAt = sentAt; }
     public boolean isSeen() { return seen; }
     public void setSeen(boolean seen) { this.seen = seen; }
-
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public LocalDateTime getSentAt() {
-        return sentAt;
-    }
-
-    public void setSentAt(LocalDateTime sentAt) {
-        this.sentAt = sentAt;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public int getReceiverId() {
-        return receiverId;
-    }
-
-    public void setReceiverId(int receiverId) {
-        this.receiverId = receiverId;
-    }
-
-    public int getSenderId() {
-        return senderId;
-    }
-
-    public void setSenderId(int senderId) {
-        this.senderId = senderId;
-    }
-
     public LocalDateTime getSeenAt() { return seenAt; }
-
     public void setSeenAt(LocalDateTime seenAt) { this.seenAt = seenAt; }
 }
